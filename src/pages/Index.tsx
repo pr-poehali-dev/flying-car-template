@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import PaperTemplate from '@/components/PaperTemplate';
 
 export default function Index() {
   const [enginePower, setEnginePower] = useState(65);
@@ -91,7 +93,20 @@ export default function Index() {
           <p className="text-xl text-muted-foreground">Панель управления летающей машиной</p>
         </header>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+        <Tabs defaultValue="control" className="w-full mb-8">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsTrigger value="control" className="flex items-center gap-2">
+              <Icon name="Gauge" size={18} />
+              Управление
+            </TabsTrigger>
+            <TabsTrigger value="template" className="flex items-center gap-2">
+              <Icon name="FileText" size={18} />
+              Бумажная модель
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="control" className="space-y-8">
+            <div className="grid lg:grid-cols-2 gap-8">
           <Card className="bg-card/50 backdrop-blur-lg border-primary/30 p-6 glow-cyan">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold flex items-center gap-3">
@@ -148,7 +163,7 @@ export default function Index() {
             </div>
           </Card>
 
-          <Card className="bg-card/50 backdrop-blur-lg border-secondary/30 p-6 glow-purple relative overflow-hidden">
+            <Card className="bg-card/50 backdrop-blur-lg border-secondary/30 p-6 glow-purple relative overflow-hidden">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold flex items-center gap-3">
                 <Icon name="Mic" size={28} className="text-secondary" />
@@ -190,9 +205,9 @@ export default function Index() {
               </div>
             )}
           </Card>
-        </div>
+            </div>
 
-        <Card className="bg-card/50 backdrop-blur-lg border-primary/30 p-6 glow-cyan">
+            <Card className="bg-card/50 backdrop-blur-lg border-primary/30 p-6 glow-cyan">
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
             <Icon name="Activity" size={28} className="text-primary" />
             Состояние систем
@@ -249,6 +264,12 @@ export default function Index() {
             </div>
           )}
         </Card>
+          </TabsContent>
+
+          <TabsContent value="template">
+            <PaperTemplate />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
