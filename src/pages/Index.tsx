@@ -7,6 +7,7 @@ import { Slider } from '@/components/ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import PaperTemplate from '@/components/PaperTemplate';
+import AppliqueTemplate from '@/components/AppliqueTemplate';
 
 export default function Index() {
   const [enginePower, setEnginePower] = useState(65);
@@ -94,14 +95,18 @@ export default function Index() {
         </header>
 
         <Tabs defaultValue="control" className="w-full mb-8">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-8">
             <TabsTrigger value="control" className="flex items-center gap-2">
               <Icon name="Gauge" size={18} />
               Управление
             </TabsTrigger>
             <TabsTrigger value="template" className="flex items-center gap-2">
-              <Icon name="FileText" size={18} />
-              Бумажная модель
+              <Icon name="Box" size={18} />
+              3D Модель
+            </TabsTrigger>
+            <TabsTrigger value="applique" className="flex items-center gap-2">
+              <Icon name="Layers" size={18} />
+              Аппликация
             </TabsTrigger>
           </TabsList>
 
@@ -268,6 +273,10 @@ export default function Index() {
 
           <TabsContent value="template">
             <PaperTemplate />
+          </TabsContent>
+
+          <TabsContent value="applique">
+            <AppliqueTemplate />
           </TabsContent>
         </Tabs>
       </div>
